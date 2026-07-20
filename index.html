@@ -17,6 +17,8 @@
 </head>
 <body>
 
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
   <!-- ================== NAV ================== -->
   <header class="site-nav">
     <div class="container nav-inner">
@@ -26,15 +28,15 @@
       </a>
       <nav>
         <ul class="nav-links">
-          <li><a href="#features">The Game</a></li>
-          <li><a href="#units">Units</a></li>
+          <li><a href="#trailer">Trailer</a></li>
+          <li><a href="#game">The Game</a></li>
           <li><a href="#soundtrack">Soundtrack</a></li>
           <li><a href="news.html">News</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="press.html">Press</a></li>
         </ul>
       </nav>
-      <a class="btn btn-gold nav-cta" data-link="steam" href="#">Wishlist on Steam</a>
+      <a class="btn btn-gold btn-sm nav-cta" data-link="steam" href="#">Wishlist on Steam</a>
       <button class="nav-burger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -42,385 +44,123 @@
   </header>
 
   <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="hero-bg" role="img" aria-label="Pixel-art battle scene: a knight charges goblins before a besieged castle"></div>
-    <div class="hero-clouds" aria-hidden="true">
-      <img class="pixel" src="art/Deco/clouds/Clouds_01.png" alt="" style="--top: 8%;  --size: 1.6; --dur: 95s; --delay: -20s; --static-left: 8%;">
-      <img class="pixel" src="art/Deco/clouds/Clouds_03.png" alt="" style="--top: 18%; --size: 1.1; --dur: 70s; --delay: -55s; --static-left: 55%;">
-      <img class="pixel" src="art/Deco/clouds/Clouds_05.png" alt="" style="--top: 5%;  --size: 0.9; --dur: 60s; --delay: -35s; --static-left: 75%;">
-      <img class="pixel" src="art/Deco/clouds/Clouds_07.png" alt="" style="--top: 26%; --size: 1.3; --dur: 110s; --delay: -80s; --static-left: 30%;">
-    </div>
-    <div class="hero-content">
-      <p class="hero-kicker">A pixel-art real-time strategy game</p>
-      <h1 class="hero-title">Knight's <span class="gold">Realm</span></h1>
-      <p class="hero-tagline">
-        Raise a village, rally your knights and hold the line — because the goblins
-        are coming, and they brought <em>way</em> too much TNT.
-      </p>
-      <div class="hero-ctas">
-        <a class="btn btn-gold" data-link="steam" href="#">&#9829; Wishlist on Steam</a>
-        <a class="btn btn-ghost" data-link="youtube" href="#">&#9654; Watch on YouTube</a>
+  <section class="hero" id="trailer">
+    <div class="hero-ambient" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <header class="hero-head">
+        <p class="hero-kicker">A pixel-art real-time strategy game</p>
+        <h1 class="hero-title">Knight's <span class="gold">Realm</span></h1>
+        <p class="hero-tagline">
+          Raise a village, rally your knights and hold the line.
+        </p>
+      </header>
+
+      <!-- Click-to-play facade: nothing is requested from YouTube until you press play -->
+      <div class="trailer" data-trailer data-title="Knight's Realm — trailer">
+        <button class="trailer-frame" type="button" aria-label="Play the trailer">
+          <img class="trailer-poster" src="art/Extra/steam_pixel_art_thumbnail.jpg" alt="">
+          <span class="trailer-play" aria-hidden="true"></span>
+          <span class="trailer-tag">Placeholder trailer</span>
+        </button>
       </div>
-      <div class="store-badges">
-        <a class="store-badge" data-link="steam" href="#">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-9.96 9.06l5.35 2.21a2.8 2.8 0 0 1 1.6-.49h.15l2.38-3.45v-.05a3.77 3.77 0 1 1 3.77 3.77h-.09l-3.4 2.43v.13a2.83 2.83 0 0 1-5.62.45l-3.82-1.58A10 10 0 1 0 12 2Zm-5.7 13.9 1.23.51a2.12 2.12 0 1 0 1.15-2.75l1.27.52a1.56 1.56 0 0 1-1.2 2.89 1.55 1.55 0 0 1-.86-.84l-1.59-.33Zm10.99-4.13a2.51 2.51 0 1 1-2.51-2.51 2.51 2.51 0 0 1 2.51 2.51Zm-4.4 0a1.89 1.89 0 1 0 1.89-1.9 1.89 1.89 0 0 0-1.89 1.9Z"/></svg>
-          <span class="sb-text"><span class="sb-small">Coming soon</span><span class="sb-name">Steam</span></span>
-        </a>
-        <a class="store-badge" data-link="googleplay" href="#">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.7c-.3.3-.5.8-.5 1.4v15.8c0 .6.2 1.1.5 1.4l.1.1 8.9-8.8v-.2L4.1 2.6l-.1.1Zm12 9.6-3-2.9 3-3 3.6 2.1c1 .6 1 1.5 0 2.1L16 12.3Zm-.9.9L12 10.1l-8 8 11.1-4.9ZM4 5.9l8 8 3.1-3.1L4 5.9Z" transform="translate(1 0)"/></svg>
-          <span class="sb-text"><span class="sb-small">Coming soon</span><span class="sb-name">Google Play</span></span>
-        </a>
-        <a class="store-badge" data-link="appstore" href="#">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1 1-4 2.4-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8 2.2-1.2 3-2.4c.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.6-3.8ZM14 5.6c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4Z"/></svg>
-          <span class="sb-text"><span class="sb-small">Coming soon</span><span class="sb-name">App Store</span></span>
-        </a>
+
+      <div class="hero-actions">
+        <div class="hero-ctas">
+          <a class="btn btn-gold" data-link="steam" href="#">Wishlist on Steam</a>
+          <a class="btn btn-ghost" data-link="youtube" href="#">Follow on YouTube</a>
+        </div>
+        <div class="store-badges">
+          <a class="store-badge" data-link="steam" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-9.96 9.06l5.35 2.21a2.8 2.8 0 0 1 1.6-.49h.15l2.38-3.45v-.05a3.77 3.77 0 1 1 3.77 3.77h-.09l-3.4 2.43v.13a2.83 2.83 0 0 1-5.62.45l-3.82-1.58A10 10 0 1 0 12 2Zm-5.7 13.9 1.23.51a2.12 2.12 0 1 0 1.15-2.75l1.27.52a1.56 1.56 0 0 1-1.2 2.89 1.55 1.55 0 0 1-.86-.84l-1.59-.33Zm10.99-4.13a2.51 2.51 0 1 1-2.51-2.51 2.51 2.51 0 0 1 2.51 2.51Zm-4.4 0a1.89 1.89 0 1 0 1.89-1.9 1.89 1.89 0 0 0-1.89 1.9Z"/></svg>
+            <span class="sb-name">Steam</span>
+          </a>
+          <a class="store-badge" data-link="googleplay" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.7c-.3.3-.5.8-.5 1.4v15.8c0 .6.2 1.1.5 1.4l.1.1 8.9-8.8v-.2L4.1 2.6l-.1.1Zm12 9.6-3-2.9 3-3 3.6 2.1c1 .6 1 1.5 0 2.1L16 12.3Zm-.9.9L12 10.1l-8 8 11.1-4.9ZM4 5.9l8 8 3.1-3.1L4 5.9Z" transform="translate(1 0)"/></svg>
+            <span class="sb-name">Google Play</span>
+          </a>
+          <a class="store-badge" data-link="appstore" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1 1-4 2.4-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8 2.2-1.2 3-2.4c.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.6-3.8ZM14 5.6c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4Z"/></svg>
+            <span class="sb-name">App Store</span>
+          </a>
+        </div>
+        <p class="hero-note">Coming to PC and mobile</p>
       </div>
     </div>
-    <a class="hero-scroll" href="#pitch" aria-label="Scroll to learn more">&#8964;</a>
   </section>
 
-  <!-- ================= PITCH ================= -->
-  <section class="section" id="pitch">
+  <!-- ================= THE GAME ================= -->
+  <section class="section" id="game">
     <div class="container">
       <div class="section-head reveal">
         <p class="section-eyebrow">Welcome to the realm</p>
         <h2 class="section-title">A tiny kingdom. A big goblin problem.</h2>
         <p class="section-sub">
-          Knight's Realm is a cozy-chaotic real-time strategy game. Chop wood, herd sheep,
-          mine gold and build your stronghold — then defend every last plank of it from
-          goblins armed with torches, exploding barrels and questionable judgement.
+          A cozy-chaotic real-time strategy game about raising a village from nothing —
+          and keeping it standing when the horde comes knocking.
         </p>
       </div>
-      <div class="faceoff reveal" data-delay="1" aria-label="A knight faces off against a torch-wielding goblin">
-        <div class="fighter">
-          <div class="sprite" data-sheet="art/Factions/Knights/Blue/Warrior_Blue.png"
-               data-cols="6" data-rows="8" data-row="0" data-from="0" data-count="6"
-               data-fps="8" data-scale="1"></div>
-        </div>
-        <span class="vs">VS</span>
-        <div class="fighter">
-          <div class="sprite flip" data-sheet="art/Factions/Goblins/Torch_Neutral.png"
-               data-cols="7" data-rows="5" data-row="0" data-from="0" data-count="6"
-               data-fps="8" data-scale="1"></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="battlements" aria-hidden="true"></div>
-
-  <!-- ================= FEATURES ================= -->
-  <section class="section section-alt" id="features">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="section-eyebrow">How you'll spend your reign</p>
-        <h2 class="section-title">Gather. Build. Recruit. Defend.</h2>
-      </div>
-      <div class="grid grid-4">
-        <div class="card reveal" data-delay="1">
-          <div class="card-ico"><img class="pixel" src="art/UI/icons/icon_gold.png" alt=""></div>
-          <h3>Gather &amp; prosper</h3>
-          <p>Send your pawns to fell forests, herd sheep and crack gold ore. Every log,
-             chop and coin is hauled home to your castle by hand.</p>
-        </div>
-        <div class="card reveal" data-delay="2">
-          <div class="card-ico"><img class="pixel" src="art/UI/icons/icon_hammer.png" alt=""></div>
-          <h3>Build your stronghold</h3>
-          <p>Place houses, barracks, archeries, monasteries and towers. Pawns hammer each
-             construction site together, plank by plank.</p>
-        </div>
-        <div class="card reveal" data-delay="3">
-          <div class="card-ico"><img class="pixel" src="art/UI/recruiting/kngiht_general.png" alt=""></div>
-          <h3>Recruit your army</h3>
-          <p>Train lancers, archers, monks and generals — each with their own fighting
-             style, temperament and favourite way to bonk a goblin.</p>
-        </div>
-        <div class="card reveal" data-delay="4">
-          <div class="card-ico"><img class="pixel" src="art/UI/icon.png" alt=""></div>
-          <h3>Defend the realm</h3>
-          <p>Garrison archers in towers and hold the walls. Goblins raid with torches,
-             rolling powder barrels and thrown TNT — stay sharp.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="battlements flip" aria-hidden="true"></div>
-
-  <!-- ================= UNITS ================= -->
-  <section class="section" id="units">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="section-eyebrow">Your loyal subjects</p>
-        <h2 class="section-title">Meet the knights</h2>
-        <p class="section-sub">Four banners fly over the realm. Pick your colours —
-           every knight (and every rooftop) follows suit.</p>
-      </div>
-      <div class="team-switch reveal" role="group" aria-label="Choose your team colour">
-        <button class="team-pill is-active" data-team="Blue">Blue</button>
-        <button class="team-pill" data-team="Red">Red</button>
-        <button class="team-pill" data-team="Purple">Purple</button>
-        <button class="team-pill" data-team="Yellow">Yellow</button>
-      </div>
-      <div class="grid grid-5">
-        <div class="card unit-card reveal" data-delay="1">
-          <div class="unit-stage">
-            <div class="sprite" data-team-src="art/Factions/Knights/{TEAM}/Warrior_{TEAM}.png"
-                 data-sheet="art/Factions/Knights/Blue/Warrior_Blue.png"
-                 data-cols="6" data-rows="8" data-row="0" data-from="0" data-count="6"
-                 data-fps="8" data-scale="0.5"></div>
-          </div>
-          <span class="role">Frontline</span>
-          <h3>General</h3>
-          <p>Your sword-and-shield backbone. Points at goblins; goblins stop existing.</p>
-        </div>
-        <div class="card unit-card reveal" data-delay="2">
-          <div class="unit-stage">
-            <div class="sprite" data-team-src="art/Factions/Knights/{TEAM}/Lancer_{TEAM}.png"
-                 data-sheet="art/Factions/Knights/Blue/Lancer_Blue.png"
-                 data-cols="6" data-rows="8" data-row="0" data-from="0" data-count="6"
-                 data-fps="8" data-scale="0.5"></div>
-          </div>
-          <span class="role">Reach</span>
-          <h3>Lancer</h3>
-          <p>Keeps trouble at spear's length with a very, very long pointy stick.</p>
-        </div>
-        <div class="card unit-card reveal" data-delay="3">
-          <div class="unit-stage">
-            <div class="sprite" data-team-src="art/Factions/Knights/{TEAM}/Archer_{TEAM}.png"
-                 data-sheet="art/Factions/Knights/Blue/Archer_Blue.png"
-                 data-cols="8" data-rows="3" data-row="2" data-from="0" data-count="8"
-                 data-fps="8" data-scale="0.5"></div>
-          </div>
-          <span class="role">Ranged</span>
-          <h3>Archer</h3>
-          <p>Rains arrows from afar — and climbs towers for an even better view.</p>
-        </div>
-        <div class="card unit-card reveal" data-delay="4">
-          <div class="unit-stage">
-            <div class="sprite" data-team-src="art/Factions/Knights/{TEAM}/Monk_{TEAM}.png"
-                 data-sheet="art/Factions/Knights/Blue/Monk_Blue.png"
-                 data-cols="11" data-rows="3" data-row="2" data-from="0" data-count="11"
-                 data-fps="9" data-scale="0.5"></div>
-          </div>
-          <span class="role">Support</span>
-          <h3>Monk</h3>
-          <p>Patches up wounded knights with a sparkle and a stern look.</p>
-        </div>
-        <div class="card unit-card reveal" data-delay="4">
-          <div class="unit-stage">
-            <div class="sprite" data-team-src="art/Factions/Knights/{TEAM}/Pawn_{TEAM}.png"
-                 data-sheet="art/Factions/Knights/Blue/Pawn_Blue.png"
-                 data-cols="8" data-rows="20" data-row="6" data-from="0" data-count="8"
-                 data-fps="8" data-scale="0.5"></div>
-          </div>
-          <span class="role">Worker</span>
-          <h3>Pawn</h3>
-          <p>The tireless heart of your economy. Chops, mines, hauls and hammers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ENEMIES ================= -->
-  <section class="section section-goblin" id="enemies">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="section-eyebrow">The green menace</p>
-        <h2 class="section-title">Know your goblins</h2>
-        <p class="section-sub">They live in huts, multiply fast, and have exactly one
-           hobby: ruining your afternoon.</p>
-      </div>
-      <div class="grid grid-3">
-        <div class="card unit-card enemy-card reveal" data-delay="1">
-          <div class="unit-stage">
-            <div class="sprite" data-sheet="art/Factions/Goblins/Torch_Neutral.png"
-                 data-cols="7" data-rows="5" data-row="0" data-from="0" data-count="6"
-                 data-fps="8" data-scale="0.5"></div>
-          </div>
-          <span class="role">Arsonist</span>
-          <h3>Torch Goblin</h3>
-          <p>Runs at your buildings waving fire. Your wooden buildings. Sets them ablaze,
-             cackles, repeats.</p>
-        </div>
-        <div class="card unit-card enemy-card reveal" data-delay="2">
-          <div class="unit-stage">
-            <div class="sprite" data-sheet="art/Factions/Goblins/Barrel_Neutral.png"
-                 data-cols="6" data-rows="6" data-row="1" data-from="0" data-count="6"
-                 data-fps="6" data-scale="0.75"></div>
-          </div>
-          <span class="role">Ambusher</span>
-          <h3>Barrel Goblin</h3>
-          <p>Hides inside a TNT barrel, peeks out to pick a victim… then charges.
-             You can guess how that ends.</p>
-        </div>
-        <div class="card unit-card enemy-card reveal" data-delay="3">
-          <div class="unit-stage">
-            <div class="sprite" data-sheet="art/Factions/Goblins/TNT_Neutral.png"
-                 data-cols="7" data-rows="3" data-row="0" data-from="0" data-count="6"
-                 data-fps="8" data-scale="0.5"></div>
-          </div>
-          <span class="role">Artillery</span>
-          <h3>TNT Goblin</h3>
-          <p>Lobs lit dynamite from a safe distance — and climbs goblin towers to lob
-             it even further.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= BUILDINGS ================= -->
-  <section class="section" id="buildings">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="section-eyebrow">From campfire to castle</p>
-        <h2 class="section-title">Build your realm</h2>
-        <p class="section-sub">Every building starts as a construction site and gets
-           hammered together by your pawns — and each one you add makes the next a
-           little pricier, so plan your village wisely.</p>
-      </div>
-      <div class="grid grid-3">
-        <div class="card building-card reveal" data-delay="1">
-          <div class="b-img"><img class="pixel" alt="Castle"
-               data-team-src="art/Factions/Knights/{TEAM}/Buildings/Castle.png"
-               src="art/Factions/Knights/Blue/Buildings/Castle.png"></div>
-          <h3>Castle</h3>
-          <p>The heart of your realm and drop-off for every resource. Lose it, and the
-             goblins win the day.</p>
-          <div class="cost-row"><span>One per realm</span></div>
-        </div>
-        <div class="card building-card reveal" data-delay="2">
-          <div class="b-img"><img class="pixel" alt="House"
-               data-team-src="art/Factions/Knights/{TEAM}/Buildings/House1.png"
-               src="art/Factions/Knights/Blue/Buildings/House1.png"></div>
-          <h3>House</h3>
-          <p>Home sweet home for a hard-working pawn. If its pawn falls, a new one moves
-             in after a while.</p>
-          <div class="cost-row"><span>First one's free!</span></div>
-        </div>
-        <div class="card building-card reveal" data-delay="3">
-          <div class="b-img"><img class="pixel" alt="Barracks"
-               data-team-src="art/Factions/Knights/{TEAM}/Buildings/Barracks.png"
-               src="art/Factions/Knights/Blue/Buildings/Barracks.png"></div>
-          <h3>Barracks</h3>
-          <p>Where lancers learn to hold the line (and to hold a really long spear).</p>
-          <div class="cost-row">
-            <span><img class="pixel" src="art/UI/icons/icon_log.png" alt="wood">8</span>
-            <span><img class="pixel" src="art/UI/icons/icon_gold.png" alt="gold">8</span>
-          </div>
-        </div>
-        <div class="card building-card reveal" data-delay="1">
-          <div class="b-img"><img class="pixel" alt="Archery range"
-               data-team-src="art/Factions/Knights/{TEAM}/Buildings/Archery.png"
-               src="art/Factions/Knights/Blue/Buildings/Archery.png"></div>
-          <h3>Archery</h3>
-          <p>Trains archers to hit a goblin square in the ego from across the map.</p>
-          <div class="cost-row">
-            <span><img class="pixel" src="art/UI/icons/icon_log.png" alt="wood">8</span>
-            <span><img class="pixel" src="art/UI/icons/icon_gold.png" alt="gold">8</span>
-          </div>
-        </div>
-        <div class="card building-card reveal" data-delay="2">
-          <div class="b-img"><img class="pixel" alt="Monastery"
-               data-team-src="art/Factions/Knights/{TEAM}/Buildings/Monastery.png"
-               src="art/Factions/Knights/Blue/Buildings/Monastery.png"></div>
-          <h3>Monastery</h3>
-          <p>Quiet halls where monks study the ancient art of un-stabbing people.</p>
-          <div class="cost-row">
-            <span><img class="pixel" src="art/UI/icons/icon_log.png" alt="wood">8</span>
-            <span><img class="pixel" src="art/UI/icons/icon_gold.png" alt="gold">8</span>
-          </div>
-        </div>
-        <div class="card building-card reveal" data-delay="3">
-          <div class="b-img"><img class="pixel" alt="Tower"
-               data-team-src="art/Factions/Knights/{TEAM}/Buildings/Tower.png"
-               src="art/Factions/Knights/Blue/Buildings/Tower.png"></div>
-          <h3>Tower</h3>
-          <p>Garrison an archer on top for extra range — the tower takes the hits
-             while they take the shots.</p>
-          <div class="cost-row">
-            <span><img class="pixel" src="art/UI/icons/icon_log.png" alt="wood">8</span>
-            <span><img class="pixel" src="art/UI/icons/icon_gold.png" alt="gold">8</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="battlements" aria-hidden="true"></div>
-
-  <!-- ================= LIVING ISLAND ================= -->
-  <section class="section section-alt" id="world">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="section-eyebrow">A world that lives without you</p>
-        <h2 class="section-title">Every island is one of a kind</h2>
-        <p class="section-sub">
-          Each new game generates a fresh island — beaches, cliffs, forests and gold veins,
-          with four rival castles staking their corners. Sheep graze and multiply, forests
-          regrow, mines run deep… and goblin camps fester in the wilds.
-        </p>
-      </div>
-      <div class="island-panel reveal" data-delay="1">
-        <div class="island-scene" aria-label="A slice of island life: trees, livestock, a gold mine and goblin huts">
-          <div class="sprite" data-sheet="art/Resources/Trees/trees.png"
-               data-cols="8" data-rows="6" data-row="0" data-from="0" data-count="1"
-               data-fps="1" data-scale="0.75"></div>
-          <div class="sprite" data-sheet="art/Resources/Sheep/Sheep_1.png"
-               data-cols="8" data-rows="2" data-row="0" data-from="0" data-count="8"
-               data-fps="6" data-scale="0.75"></div>
-          <img class="pixel" src="art/Resources/Gold Mine/GoldMine_Active.png" alt="An active gold mine" style="height: 130px;">
-          <img class="pixel" src="art/Resources/Gold Ore/Gold Stone 3.png" alt="Gold ore" style="height: 60px;">
-          <div class="sprite flip" data-sheet="art/Resources/Sheep/Sheep_1.png"
-               data-cols="8" data-rows="2" data-row="0" data-from="0" data-count="8"
-               data-fps="5" data-scale="0.75"></div>
-          <div class="sprite" data-sheet="art/Factions/Goblins/Goblin_Hut.png" role="img" aria-label="A goblin hut with a smoking chimney"
-               data-cols="16" data-rows="1" data-row="0" data-from="0" data-count="16"
-               data-fps="6" data-scale="0.6"></div>
-          <div class="sprite" data-sheet="art/Resources/Trees/trees.png"
-               data-cols="8" data-rows="6" data-row="2" data-from="0" data-count="1"
-               data-fps="1" data-scale="0.75"></div>
-        </div>
+      <div class="grid grid-3 stagger">
+        <article class="card reveal">
+          <span class="card-num">01</span>
+          <h3>Gather &amp; build</h3>
+          <p>Work the land, stockpile what you need and raise a stronghold that fits
+             the island you were given.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">02</span>
+          <h3>Command your knights</h3>
+          <p>Recruit and lead an army with real roles to play — every order you give
+             costs you something somewhere else.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">03</span>
+          <h3>Hold the line</h3>
+          <p>The goblins come at night, in numbers, and they are not subtle about it.
+             Be ready, or be rebuilding.</p>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- ================= SOUNDTRACK ================= -->
-  <section class="section" id="soundtrack">
+  <section class="section section-alt" id="soundtrack">
     <div class="container">
       <div class="section-head reveal">
         <p class="section-eyebrow">Music of the realm</p>
         <h2 class="section-title">Listen to the soundtrack</h2>
-        <p class="section-sub">Three moods of a knight's day: sharpening steel,
-           raising rooftops, and absolutely walloping goblins.</p>
       </div>
-      <div class="tracks reveal" data-delay="1">
+      <div class="tracks reveal">
         <div class="track" data-src="art/Extra/soundtrack_prepare_1.mp3">
-          <button class="track-play" aria-label="Play">
-            <span class="ico-play">&#9654;</span><span class="ico-pause">&#10074;&#10074;</span>
+          <button class="track-play" aria-label="Play Preparation">
+            <span class="ico-play" aria-hidden="true"></span>
+            <span class="ico-pause" aria-hidden="true"></span>
           </button>
           <div class="track-meta">
-            <div class="track-name">Preparation — Sharpen the Blades</div>
+            <div class="track-name">Preparation</div>
             <div class="track-bar"><div class="track-fill"></div></div>
           </div>
           <div class="track-time">0:00 / 0:00</div>
         </div>
         <div class="track" data-src="art/Extra/soundtrack_build_1.mp3">
-          <button class="track-play" aria-label="Play">
-            <span class="ico-play">&#9654;</span><span class="ico-pause">&#10074;&#10074;</span>
+          <button class="track-play" aria-label="Play Building">
+            <span class="ico-play" aria-hidden="true"></span>
+            <span class="ico-pause" aria-hidden="true"></span>
           </button>
           <div class="track-meta">
-            <div class="track-name">Building — Hammer &amp; Hearth</div>
+            <div class="track-name">Building</div>
             <div class="track-bar"><div class="track-fill"></div></div>
           </div>
           <div class="track-time">0:00 / 0:00</div>
         </div>
         <div class="track" data-src="art/Extra/soundtrack_battle_1.mp3">
-          <button class="track-play" aria-label="Play">
-            <span class="ico-play">&#9654;</span><span class="ico-pause">&#10074;&#10074;</span>
+          <button class="track-play" aria-label="Play Battle">
+            <span class="ico-play" aria-hidden="true"></span>
+            <span class="ico-pause" aria-hidden="true"></span>
           </button>
           <div class="track-meta">
-            <div class="track-name">Battle — Steel Meets Goblin</div>
+            <div class="track-name">Battle</div>
             <div class="track-bar"><div class="track-fill"></div></div>
           </div>
           <div class="track-time">0:00 / 0:00</div>
@@ -429,50 +169,44 @@
     </div>
   </section>
 
-  <div class="battlements" aria-hidden="true"></div>
-
   <!-- ================= NEWS TEASER ================= -->
-  <section class="section section-alt" id="news">
+  <section class="section" id="news">
     <div class="container">
       <div class="section-head reveal">
         <p class="section-eyebrow">Word from the workshop</p>
         <h2 class="section-title">Latest news</h2>
       </div>
-      <div class="grid grid-3">
-        <div class="card news-card reveal" data-delay="1">
+      <div class="grid grid-3 stagger">
+        <article class="card news-card reveal">
           <div class="news-date">July 17, 2026</div>
           <h3><a href="news.html#welcome">Welcome to Knight's Realm</a></h3>
-          <p>The gates are open! Our brand-new website is live — take a tour of the units,
-             the goblins and the soundtrack.</p>
-          <a class="more" href="news.html#welcome">Read more →</a>
-        </div>
-        <div class="card news-card reveal" data-delay="2">
+          <p>The gates are open — our new website is live.</p>
+          <a class="more" href="news.html#welcome">Read more</a>
+        </article>
+        <article class="card news-card reveal">
           <div class="news-date">July 10, 2026</div>
           <h3><a href="news.html#living-islands">From the workshop: living islands</a></h3>
-          <p>How every new game builds a one-of-a-kind island — and why the sheep
-             population keeps getting out of hand.</p>
-          <a class="more" href="news.html#living-islands">Read more →</a>
-        </div>
-        <div class="card news-card reveal" data-delay="3">
+          <p>How every new game builds a one-of-a-kind island.</p>
+          <a class="more" href="news.html#living-islands">Read more</a>
+        </article>
+        <article class="card news-card reveal">
           <div class="news-date">July 3, 2026</div>
           <h3><a href="news.html#steam-soon">Steam page in the works</a></h3>
-          <p>Knight's Realm is marching toward Steam, Google Play and the App Store.
-             Here's what happens next.</p>
-          <a class="more" href="news.html#steam-soon">Read more →</a>
-        </div>
+          <p>Knight's Realm is marching toward release. Here's what's next.</p>
+          <a class="more" href="news.html#steam-soon">Read more</a>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- ================= FINAL CTA ================= -->
-  <section class="section">
+  <section class="section section-tight">
     <div class="container">
       <div class="cta-banner reveal">
         <h2>Ready to defend your realm?</h2>
-        <p>Wishlist Knight's Realm and follow the journey — every wishlist is one more
-           knight for the cause.</p>
+        <p>Wishlist Knight's Realm and follow the journey.</p>
         <div class="hero-ctas">
-          <a class="btn btn-gold" data-link="steam" href="#">&#9829; Wishlist on Steam</a>
+          <a class="btn btn-gold" data-link="steam" href="#">Wishlist on Steam</a>
         </div>
         <div class="socials">
           <a class="social-btn" data-link="instagram" href="#" aria-label="Instagram">
@@ -495,11 +229,11 @@
             <img class="pixel" src="art/UI/icon.png" alt="">
             Knight's Realm
           </div>
-          <p style="color: var(--ink-dim); max-width: 300px;">
+          <p class="footer-blurb">
             A pixel-art real-time strategy game about building a village, commanding
             knights, and politely asking goblins to leave. With swords.
           </p>
-          <div class="socials" style="justify-content: flex-start;">
+          <div class="socials socials-left">
             <a class="social-btn" data-link="instagram" href="#" aria-label="Instagram">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.9.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.9.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.9-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.9-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1Zm0 2c-3.1 0-3.5 0-4.7.1-1.1.1-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.7-.3 1.7-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.7.3 1.7.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.7.3-1.7.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.7-.3-1.7-.3-1.2-.1-1.6-.1-4.7-.1Zm0 3.3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 7.4a2.9 2.9 0 1 0 0-5.8 2.9 2.9 0 0 0 0 5.8Zm5.7-7.6a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"/></svg>
             </a>
@@ -526,31 +260,30 @@
         </div>
         <div>
           <h4>Get the game</h4>
-          <div class="store-badges" style="flex-direction: column; align-items: stretch;">
+          <div class="store-badges store-badges-stack">
             <a class="store-badge" data-link="steam" href="#">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-9.96 9.06l5.35 2.21a2.8 2.8 0 0 1 1.6-.49h.15l2.38-3.45v-.05a3.77 3.77 0 1 1 3.77 3.77h-.09l-3.4 2.43v.13a2.83 2.83 0 0 1-5.62.45l-3.82-1.58A10 10 0 1 0 12 2Zm-5.7 13.9 1.23.51a2.12 2.12 0 1 0 1.15-2.75l1.27.52a1.56 1.56 0 0 1-1.2 2.89 1.55 1.55 0 0 1-.86-.84l-1.59-.33Zm10.99-4.13a2.51 2.51 0 1 1-2.51-2.51 2.51 2.51 0 0 1 2.51 2.51Zm-4.4 0a1.89 1.89 0 1 0 1.89-1.9 1.89 1.89 0 0 0-1.89 1.9Z"/></svg>
-              <span class="sb-text"><span class="sb-small">Coming soon</span><span class="sb-name">Steam</span></span>
+              <span class="sb-name">Steam</span>
             </a>
             <a class="store-badge" data-link="googleplay" href="#">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.7c-.3.3-.5.8-.5 1.4v15.8c0 .6.2 1.1.5 1.4l.1.1 8.9-8.8v-.2L4.1 2.6l-.1.1Zm12 9.6-3-2.9 3-3 3.6 2.1c1 .6 1 1.5 0 2.1L16 12.3Zm-.9.9L12 10.1l-8 8 11.1-4.9ZM4 5.9l8 8 3.1-3.1L4 5.9Z" transform="translate(1 0)"/></svg>
-              <span class="sb-text"><span class="sb-small">Coming soon</span><span class="sb-name">Google Play</span></span>
+              <span class="sb-name">Google Play</span>
             </a>
             <a class="store-badge" data-link="appstore" href="#">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1 1-4 2.4-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8 2.2-1.2 3-2.4c.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.6-3.8ZM14 5.6c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4Z"/></svg>
-              <span class="sb-text"><span class="sb-small">Coming soon</span><span class="sb-name">App Store</span></span>
+              <span class="sb-name">App Store</span>
             </a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> Knight's Realm. All rights reserved.</span>
-        <span>Made with ⚔️ and pixels. No cookies, no trackers — <a href="privacy.html">promise</a>.</span>
+        <span>Made with pixels. No cookies, no trackers — <a href="privacy.html">promise</a>.</span>
       </div>
     </div>
   </footer>
 
   <script src="assets/js/links.js"></script>
-  <script src="assets/js/sprites.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

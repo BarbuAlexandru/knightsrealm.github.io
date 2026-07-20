@@ -1,20 +1,28 @@
 /* =========================================================================
-   Knight's Realm — site behaviour: nav, scroll-reveal, team switcher,
-   soundtrack players. No cookies, no storage, no external requests.
+   Knight's Realm — site behaviour: nav, scroll reveal, trailer, soundtrack.
+   No cookies, no storage. Nothing is requested from YouTube until the
+   visitor actually presses play on the trailer.
    ========================================================================= */
 
 (function () {
   "use strict";
 
-  /* ---------------- Sticky nav: solid background once scrolled ---------- */
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------------- Sticky nav ------------------------------------------ */
   const nav = document.querySelector(".site-nav");
-  if (nav) {
-    const onScroll = function () {
-      nav.classList.toggle("is-scrolled", window.scrollY > 24);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+  const progress = document.querySelector(".scroll-progress span");
+
+  function onScroll() {
+    const y = window.scrollY;
+    if (nav) nav.classList.toggle("is-scrolled", y > 20);
+    if (progress) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
+    }
   }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
   /* ---------------- Mobile menu ----------------------------------------- */
   const burger = document.querySelector(".nav-burger");
@@ -31,79 +39,97 @@
     });
   }
 
-  /* ---------------- Scroll reveal --------------------------------------- */
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* ---------------- Scroll reveal, staggered within each group ---------- */
   const revealables = document.querySelectorAll(".reveal");
   if (reduced) {
     revealables.forEach(function (el) { el.classList.add("is-visible"); });
-  } else if (revealables.length) {
+  } else if (revealables.length && "IntersectionObserver" in window) {
+    // siblings inside a .stagger container come in one after another
+    document.querySelectorAll(".stagger").forEach(function (group) {
+      group.querySelectorAll(".reveal").forEach(function (el, i) {
+        el.style.setProperty("--reveal-delay", (i * 0.09).toFixed(2) + "s");
+      });
+    });
+
     const ro = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          ro.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        ro.unobserve(entry.target);
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
     revealables.forEach(function (el) { ro.observe(el); });
   }
 
-  /* ---------------- Smooth anchor scrolling (user clicks only) ---------- */
+  /* ---------------- Smooth anchor scrolling (user clicks only) ----------
+     Done in JS rather than CSS scroll-behavior so programmatic jumps stay
+     instant, and offset by the nav so targets aren't hidden under it.     */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener("click", function (e) {
       const id = a.getAttribute("href").slice(1);
       const target = id && document.getElementById(id);
       if (!target) return;
       e.preventDefault();
-      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+      const offset = (nav ? nav.offsetHeight : 0) + 12;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
       history.replaceState(null, "", "#" + id);
     });
   });
 
-  /* ---------------- Pause hero cloud animations while off-screen -------- */
-  const hero = document.querySelector(".hero");
-  if (hero && "IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        hero.classList.toggle("is-offscreen", !entry.isIntersecting);
+  /* ---------------- Hero parallax on the ambient backdrop --------------- */
+  const ambient = document.querySelector(".hero-ambient");
+  if (ambient && !reduced) {
+    let ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ambient.style.setProperty("--parallax", window.scrollY * 0.18 + "px");
+        ticking = false;
       });
-    }).observe(hero);
+    }, { passive: true });
   }
 
-  /* ---------------- Team colour switcher --------------------------------
-     Buttons: .team-switch [data-team="Blue|Red|Purple|Yellow"]
-     Targets: [data-team-src] holding a template with {TEAM} tokens.
-       - .sprite elements swap their data-sheet (re-inited via KRSprites)
-       - <img> elements swap their src                                     */
-  const teamButtons = document.querySelectorAll("[data-team]");
-  function setTeam(team) {
-    teamButtons.forEach(function (b) {
-      b.classList.toggle("is-active", b.getAttribute("data-team") === team);
-    });
-    document.querySelectorAll("[data-team-src]").forEach(function (el) {
-      const url = el.getAttribute("data-team-src").split("{TEAM}").join(team);
-      if (el.classList.contains("sprite")) {
-        if (el.getAttribute("data-sheet") !== url) {
-          el.setAttribute("data-sheet", url);
-          if (window.KRSprites) window.KRSprites.refresh(el);
-        }
-      } else if (el.tagName === "IMG") {
-        el.src = url;
-      }
-    });
-    document.querySelectorAll(".team-accent").forEach(function (el) {
-      el.setAttribute("data-current-team", team);
+  /* ---------------- Pointer glow on cards -------------------------------- */
+  if (!reduced && window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll(".card").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
     });
   }
-  teamButtons.forEach(function (b) {
-    b.addEventListener("click", function () { setTeam(b.getAttribute("data-team")); });
+
+  /* ---------------- Trailer: click-to-load YouTube facade ---------------
+     The poster and play button are ours; only on click do we swap in the
+     privacy-friendly nocookie embed. Video id lives in links.js.         */
+  document.querySelectorAll("[data-trailer]").forEach(function (wrap) {
+    const frame = wrap.querySelector(".trailer-frame");
+    if (!frame) return;
+
+    frame.addEventListener("click", function () {
+      const id = (window.KR_LINKS && window.KR_LINKS.trailerId) || "";
+      if (!id) return;
+
+      const embed = document.createElement("div");
+      embed.className = "trailer-embed";
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) +
+                   "?autoplay=1&rel=0&modestbranding=1";
+      iframe.title = wrap.getAttribute("data-title") || "Trailer";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+      embed.appendChild(iframe);
+      wrap.replaceChild(embed, frame);
+    });
   });
 
-  /* ---------------- Soundtrack players ----------------------------------
-     Markup: .track (data-src) > .track-play, .track-bar > .track-fill,
-     .track-time. Only one track plays at a time.                          */
+  /* ---------------- Soundtrack players ---------------------------------- */
   const tracks = document.querySelectorAll(".track");
-  let current = null;
+  let stopCurrent = null;
 
   function fmt(t) {
     if (!isFinite(t)) return "0:00";
@@ -121,27 +147,28 @@
     const fill = trackEl.querySelector(".track-fill");
     const time = trackEl.querySelector(".track-time");
     const bar = trackEl.querySelector(".track-bar");
+    const name = trackEl.querySelector(".track-name");
+    const label = name ? name.textContent.trim() : "track";
 
     function stop() {
       audio.pause();
       trackEl.classList.remove("is-playing");
-      btn.setAttribute("aria-label", "Play");
+      btn.setAttribute("aria-label", "Play " + label);
     }
 
     btn.addEventListener("click", function () {
       if (trackEl.classList.contains("is-playing")) { stop(); return; }
-      if (current && current !== stop) current();
-      current = stop;
+      if (stopCurrent && stopCurrent !== stop) stopCurrent();
+      stopCurrent = stop;
       audio.play();
       trackEl.classList.add("is-playing");
-      btn.setAttribute("aria-label", "Pause");
+      btn.setAttribute("aria-label", "Pause " + label);
     });
 
     audio.addEventListener("timeupdate", function () {
-      if (audio.duration) {
-        fill.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-        time.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
-      }
+      if (!audio.duration) return;
+      fill.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+      time.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
     });
     audio.addEventListener("ended", function () {
       stop();

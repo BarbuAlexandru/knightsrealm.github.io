@@ -6,17 +6,16 @@ Hosted with GitHub Pages at <https://knightsrealm.github.io>.
 ## Structure
 
 ```
-index.html            Main presentation page (hero, features, units, enemies,
-                      buildings, world, soundtrack, news teaser)
+index.html            Main presentation page (hero + trailer, the game,
+                      soundtrack, news teaser)
 news.html             News / devlog posts
 about.html            About the game & developer + FAQ + contact
 press.html            Press kit (factsheet, descriptions, asset downloads)
 privacy.html          Privacy policy
 404.html              "Off the map" error page (served automatically by Pages)
 assets/css/style.css  Design system & all component styles
-assets/js/links.js    ⭐ All external links & contact email (see below)
-assets/js/sprites.js  Spritesheet animation engine
-assets/js/main.js     Nav, scroll-reveal, team switcher, audio players
+assets/js/links.js    ⭐ All external links, trailer id & contact email (see below)
+assets/js/main.js     Nav, scroll-reveal, trailer facade, audio players
 art/                  Game art & audio, referenced directly by the site
 DOCUMENTATION.md      Game design/state reference (not part of the site)
 ```
@@ -34,17 +33,18 @@ working buttons on every page. The contact email placeholder lives in the same f
 2. Optionally update the three "Latest news" teaser cards near the bottom of
    `index.html` to feature it.
 
-## Animated sprites
+## The trailer
 
-Any element like:
+The hero player is a **click-to-play facade**: the poster and play button are ours,
+and nothing is requested from YouTube until a visitor actually presses play (then a
+`youtube-nocookie.com` embed is swapped in). The video id lives in `links.js` as
+`trailerId` — currently a **placeholder** (Blender's CC-BY "Big Buck Bunny").
 
-```html
-<div class="sprite" data-sheet="art/…png" data-cols="6" data-rows="8"
-     data-row="0" data-from="0" data-count="6" data-fps="8" data-scale="0.5"></div>
-```
+To ship the real trailer: set `trailerId` in `assets/js/links.js`, then delete the
+`<span class="trailer-tag">Placeholder trailer</span>` line from `index.html`.
 
-plays frames `from … from+count-1` of grid row `row` from the given spritesheet.
-Sprites pause off-screen and freeze for visitors who prefer reduced motion.
+The poster uses the key art, scaled and shifted in CSS (`.trailer-poster`) because the
+source JPG has Steam store chrome baked into its top band that must stay out of frame.
 
 ## Development
 
