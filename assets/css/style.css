@@ -1,5 +1,5 @@
 /* =========================================================================
-   Knight's Realm — site design system
+   Realm of Knights: The Siege — site design system
    Dark cinematic theme drawn from the game's palette:
    night stone blues, parchment, gold, castle teal.
    ========================================================================= */
@@ -266,6 +266,21 @@ a:hover { color: var(--gold-bright); }
 }
 .nav-brand:hover img { transform: translateY(-2px) rotate(-4deg); }
 
+/* two-line lockup: title above, subtitle beneath */
+.brand-lines {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.brand-sub {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 3px;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -358,17 +373,43 @@ a:hover { color: var(--gold-bright); }
 .hero-inner { display: grid; justify-items: center; text-align: center; }
 .hero-head { max-width: 720px; }
 
+/* The kicker and tagline are signposts; the title block is the event. Both
+   are kept dim and small so nothing competes with the name. */
 .hero-kicker {
-  font-size: 0.76rem;
+  font-size: 0.7rem;
   letter-spacing: 0.36em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
+  color: var(--ink-dim);
+  margin-bottom: 20px;
 }
 .hero-title {
   font-size: clamp(2.9rem, 8vw, 5.2rem);
-  margin: 0 0 14px;
+  margin: 0 0 18px;
   letter-spacing: -0.01em;
+}
+/* "The Siege" is part of the title — display type, gold, flanked by rules */
+.hero-title-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 26px);
+  font-size: clamp(1.25rem, 3.4vw, 2.15rem);
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;    /* balances the trailing letter-space */
+  text-transform: uppercase;
+  margin-top: 10px;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-title-sub::before,
+.hero-title-sub::after {
+  content: "";
+  flex: 0 1 clamp(30px, 12vw, 130px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-deep), transparent);
+  text-indent: 0;
 }
 .hero-title .gold {
   background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
@@ -377,10 +418,10 @@ a:hover { color: var(--gold-bright); }
   color: transparent;
 }
 .hero-tagline {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  color: var(--ink);
-  max-width: 520px;
-  margin: 0 auto 34px;
+  font-size: clamp(0.98rem, 1.6vw, 1.1rem);
+  color: var(--ink-dim);
+  max-width: 480px;
+  margin: 22px auto 34px;
 }
 
 /* --- Trailer: the centrepiece ------------------------------------------- */

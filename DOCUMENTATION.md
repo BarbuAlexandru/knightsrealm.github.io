@@ -1,4 +1,4 @@
-# Knight's Realm — Current-State Reference
+# Realm of Knights: The Siege — Current-State Reference
 
 Top-down 2D RTS in **Godot 4.3** (Mobile renderer). One autoload: **`GlobalScript`**
 ([`scripts/systems/Global/Global_Script.gd`](scripts/systems/Global/Global_Script.gd)), with all shared

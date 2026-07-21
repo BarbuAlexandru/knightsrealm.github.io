@@ -1,5 +1,5 @@
 /* =========================================================================
-   Knight's Realm — site behaviour: nav, scroll reveal, trailer, soundtrack.
+   Realm of Knights: The Siege — site behaviour: nav, scroll reveal, trailer, soundtrack.
    No cookies, no storage. Nothing is requested from YouTube until the
    visitor actually presses play on the trailer.
    ========================================================================= */

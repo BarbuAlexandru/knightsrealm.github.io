@@ -1,6 +1,6 @@
-# Knight's Realm — Official Website
+# Realm of Knights: The Siege — Official Website
 
-The presentation website for **Knight's Realm**, a pixel-art real-time strategy game.
+The presentation website for **Realm of Knights: The Siege**, a pixel-art real-time strategy game.
 Hosted with GitHub Pages at <https://knightsrealm.github.io>.
 
 ## Structure

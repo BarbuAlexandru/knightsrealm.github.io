@@ -1,5 +1,5 @@
 /* =========================================================================
-   Knight's Realm — external links & contact configuration.
+   Realm of Knights: The Siege — external links & contact configuration.
 
    This is the ONLY file you need to edit when the real store pages,
    social accounts, trailer or contact email go live. Leave a url empty ("")
@@ -16,7 +16,7 @@ window.KR_LINKS = {
 
   /* PLACEHOLDER trailer — currently Blender Foundation's "Big Buck Bunny"
      (CC-BY), standing in until the real trailer is cut. Swap this id for the
-     Knight's Realm trailer and drop the "Placeholder trailer" tag from the
+     Realm of Knights trailer and drop the "Placeholder trailer" tag from the
      markup in index.html. */
   trailerId: "aqz-KE-bpKQ",
 };
